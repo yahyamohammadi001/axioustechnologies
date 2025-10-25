@@ -1,6 +1,6 @@
 "use client"
 
-import { DesktopSidebar } from "@/components/layout/sidebar"
+import { DesktopSidebar, MobileSidebar } from "@/components/layout/sidebar"
 import { Header } from "@/components/layout/header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,9 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Clock, Users, Star, BookOpen, Play, CheckCircle, Lock, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { useState } from "react"
-import { MobileSidebarContent } from "@/components/layout/sidebar"
 
 const courseData = {
   "notion-for-pm": {
@@ -119,27 +117,25 @@ export default function CoursePage() {
   if (!course) {
     return (
       <div className="flex h-screen bg-background">
-        <Sheet>
-          <DesktopSidebar />
-          <div className="flex-1 flex flex-col md:ml-64">
-            {/* <Header setSidebarOpen={(open) => setIsSidebarOpen(open)} /> */}
-            <main className="flex-1 overflow-y-auto bg-card flex items-center justify-center">
-              <div className="text-center">
-                <h1 className="text-2xl font-bold mb-4">Course Not Found</h1>
-                <Button asChild>
-                  <Link href="/courses">Back to Courses</Link>
-                </Button>
-              </div>
-            </main>
-          </div>
-        </Sheet>
+        <DesktopSidebar />
+        <div className="flex-1 flex flex-col md:pl-64">
+          <Header sidebarOpen={isSidebarOpen} setSidebarOpen={setIsSidebarOpen} />
+          <MobileSidebar open={isSidebarOpen} setOpen={setIsSidebarOpen} />
+          <main className="flex-1 overflow-y-auto bg-card flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4">Course Not Found</h1>
+              <Button asChild>
+                <Link href="/courses">Back to Courses</Link>
+              </Button>
+            </div>
+          </main>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="flex h-screen bg-background">
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
         {/* Desktop Sidebar (hidden on mobile) */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           <div className="flex flex-col flex-grow border-r bg-card">
@@ -149,13 +145,8 @@ export default function CoursePage() {
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col md:pl-64">
-          {/* <Header setSidebarOpen={(open) => setIsSidebarOpen(open)} /> */}
-          <SheetContent side="left" className="p-0 w-64">
-            <SheetHeader>
-              <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-            </SheetHeader>
-            <MobileSidebarContent />
-          </SheetContent>
+          <Header sidebarOpen={isSidebarOpen} setSidebarOpen={setIsSidebarOpen} />
+          <MobileSidebar open={isSidebarOpen} setOpen={setIsSidebarOpen} />
           <main className="flex-1 overflow-y-auto bg-card">
             {/* Course Header */}
             <section className="py-8 px-6 bg-card">
@@ -259,7 +250,6 @@ export default function CoursePage() {
             </section>
           </main>
         </div>
-      </Sheet>
     </div>
   )
 }

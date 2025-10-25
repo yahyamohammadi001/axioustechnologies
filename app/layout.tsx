@@ -1,13 +1,12 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { ThemeProvider } from "@/components/theme-provider"
-import "./globals.css"
-import { Suspense } from "react"
 import { ClerkProvider } from '@clerk/nextjs'
+import { ThemeProvider } from "@/components/theme-provider"
+import { AppLayout } from "@/components/layout/app-layout"
+import "./globals.css"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -15,12 +14,6 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   weight: ["400", "700"],
 })
-
-export const metadata: Metadata = {
-  title: "LearnHub - Modern Learning Platform",
-  description: "Master new skills with our comprehensive courses, batches, and opportunities",
-  generator: "v0.app",
-}
 
 export default function RootLayout({
   children,
@@ -30,11 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>
-        <Suspense fallback={null}>
+        <ClerkProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <ClerkProvider>{children}</ClerkProvider>
+            <AppLayout>{children}</AppLayout>
           </ThemeProvider>
-        </Suspense>
+        </ClerkProvider>
         <Analytics />
       </body>
     </html>

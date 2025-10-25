@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
-import { DesktopSidebar, MobileSidebarContent } from "@/components/layout/sidebar"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -50,27 +49,11 @@ export default function BlogsPage() {
   const regularPosts = filteredPosts.filter((post) => !post.featured)
 
   return (
-    <div className="flex h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex flex-col flex-grow border-r bg-card">
-          <DesktopSidebar />
-        </div>
-      </div>
-
-      {/* Mobile Sidebar */}
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-        <div className="flex-1 flex flex-col md:pl-64">
-          <SheetContent side="left" className="p-0 w-64">
-            <SheetHeader>
-              <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-            </SheetHeader>
-            <MobileSidebarContent />
-          </SheetContent>
-          <main className="flex-1 overflow-y-auto">
+    <div className="container mx-auto py-6">
+      <main>
             {/* Header Section */}
-            <section className="py-12 px-6 bg-card">
-              <div className="max-w-6xl mx-auto">
+            <section className="py-12 px-10 bg-card">
+              <div className="max-w-12px mx-auto">
                 <div className="flex items-center mb-4">
                   <BookOpen className="h-8 w-8 text-primary mr-3" />
                   <h1 className="font-playfair font-bold text-4xl">Project Management Blog</h1>
@@ -167,9 +150,12 @@ export default function BlogsPage() {
                     <Card key={post.id} className="group hover:shadow-lg transition-all duration-300">
                       <div className="aspect-video bg-muted rounded-t-lg overflow-hidden">
                         <img
-                          src={post.image || "/placeholder.svg"}
+                          src={post.image || "/placeholder.jpg"}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          onError={(e) => {
+                            e.currentTarget.src = "/agile-scrum-course.jpg";
+                          }}
                         />
                       </div>
                       <CardHeader className="pb-3">
@@ -219,9 +205,7 @@ export default function BlogsPage() {
                 </div>
               </div>
             </section>
-          </main>
-        </div>
-      </Sheet>
+      </main>
     </div>
   )
 }

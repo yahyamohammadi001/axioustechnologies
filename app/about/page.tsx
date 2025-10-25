@@ -1,12 +1,7 @@
 "use client"
 
-import { useState, useCallback } from "react"
-import { DesktopSidebar, MobileSidebarContent } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Users, Target, Award, Globe, BookOpen, Lightbulb, Heart, Zap } from "lucide-react"
 import Link from "next/link"
 
@@ -41,41 +36,21 @@ const values = [
 ]
 
 export default function AboutPage() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
-    <div className="flex h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex flex-col flex-grow border-r bg-card">
-          <DesktopSidebar />
-        </div>
-      </div>
-
-      {/* Mobile Sidebar */}
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-        <div className="flex-1 flex flex-col md:pl-64">
-          <Header />
-          <SheetContent side="left" className="p-0 w-64">
-            <SheetHeader>
-              <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-            </SheetHeader>
-            <MobileSidebarContent />
-          </SheetContent>
-          <main className="flex-1 overflow-y-auto">
-            {/* Hero Section */}
-            <section className="py-16 px-6 bg-gradient-to-br from-primary/20 to-primary/3">
-              <div className="max-w-4xl mx-auto text-center">
-                <h1 className="font-playfair font-bold text-5xl mb-6">About Axious Technologies</h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+    <div className="container mx-auto px-0">
+      {/* Hero Section */}
+            <section className="py-8 sm:py-16 bg-gradient-to-br from-primary/20 to-primary/3">
+              <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
+                <h1 className="font-playfair font-bold text-3xl sm:text-5xl mb-4 sm:mb-6">About Axious Technologies</h1>
+                <p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
                   We're on a mission to democratize project management education and empower professionals worldwide
                   with the skills they need to lead successful projects and drive organizational change.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" asChild>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                  <Button size="lg" className="w-full sm:w-auto" asChild>
                     <Link href="/courses">Explore Courses</Link>
                   </Button>
-                  <Button  size="lg" asChild>
+                  <Button size="lg" className="w-full sm:w-auto" asChild>
                     <Link href="/contact">Get in Touch</Link>
                   </Button>
                 </div>
@@ -84,10 +59,10 @@ export default function AboutPage() {
 
 
             {/* Story Section */}
-            <section className="py-16 px-6">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="font-playfair font-bold text-3xl mb-8 text-center">Our Story</h2>
-                <div className="prose prose-lg mx-auto text-muted-foreground">
+            <section className="py-8 sm:py-16">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6">
+                <h2 className="font-playfair font-bold text-2xl sm:text-3xl mb-6 sm:mb-8 text-center">Our Story</h2>
+                <div className="prose prose-sm sm:prose-lg mx-auto text-muted-foreground">
                   <p className="text-lg leading-relaxed mb-6">
                   Axious Technologies was founded in 2025 by Yahya Mohammadi with a clear vision: to make high-quality project management education accessible to everyone, regardless of location, background, or career stage.
                   </p>
@@ -109,10 +84,10 @@ export default function AboutPage() {
             </section>
 
             {/* Values Section */}
-            <section className="py-16 px-6 bg-muted/30">
-              <div className="max-w-6xl mx-auto">
-                <h2 className="font-playfair font-bold text-3xl mb-12 text-center">Our Values</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <section className="py-8 sm:py-16 bg-muted/30">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                <h2 className="font-playfair font-bold text-2xl sm:text-3xl mb-8 sm:mb-12 text-center">Our Values</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
                   {values.map((value, index) => (
                     <Card key={index} className="text-center">
                       <CardHeader>
@@ -129,14 +104,14 @@ export default function AboutPage() {
             </section>
 
             {/* Mission Section */}
-            <section className="py-6 px-1 bg-gradient-to-br from-primary/40 to-primary/3">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="font-playfair font-bold text-3xl mb-8">Our Mission</h2>
-                <p className="text-xl leading-relaxed mb-8">
+            <section className="py-8 sm:py-12 bg-gradient-to-br from-primary/40 to-primary/3">
+              <div className="max-w-4xl mx-auto text-center px-4 sm:px-6">
+                <h2 className="font-playfair font-bold text-2xl sm:text-3xl mb-6 sm:mb-8">Our Mission</h2>
+                <p className="text-lg sm:text-xl leading-relaxed mb-6 sm:mb-8">
                   To empower the next generation of project managers with practical skills, industry knowledge, and the
                   confidence to lead successful projects that drive meaningful change in organizations worldwide.
                 </p>
-                <div className="grid md:grid-cols-3 gap-8 text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 text-left">
                   <div>
                     <Award className="h-8 w-8 mb-4" />
                     <h3 className="font-semibold text-lg mb-2">Quality Education</h3>
@@ -162,9 +137,6 @@ export default function AboutPage() {
               </div>
             </section>
             
-          </main>
-        </div>
-      </Sheet>
     </div>
   )
 }

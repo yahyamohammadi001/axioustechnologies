@@ -1,38 +1,16 @@
 "use client"
 
-import { useState, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { DesktopSidebar, MobileSidebarContent } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { BookOpen, Users, Briefcase, ArrowRight, Star, Clock, TrendingUp } from "lucide-react"
 import Link from "next/link"
 
 export default function HomePage() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-  <div className="flex h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex flex-col flex-grow border-r bg-card">
-          <DesktopSidebar />
-        </div>
-      </div>
-
-      {/* Mobile Sidebar */}
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-  <div className="flex-1 flex flex-col md:pl-64">
-          <Header />
-          <SheetContent side="left" className="p-0 w-64">
-            <SheetHeader>
-              <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-            </SheetHeader>
-            <MobileSidebarContent />
-          </SheetContent>
-          <main className="flex-1 overflow-y-auto">
+    <div className="container mx-auto">
+      <main>
             {/* Hero Section */}
             <section className="relative py-12 px-4 text-center bg-gradient-to-br from-card to-background sm:px-6 lg:px-8">
               <div className="container mx-auto max-w-4xl">
@@ -154,71 +132,6 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* Opportunities */}
-            <section className="py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-              <div className="container mx-auto max-w-6xl">
-                <div className="flex flex-col items-center text-center mb-8 sm:flex-row sm:justify-between sm:text-left">
-                  <div>
-                    <h2 className="font-playfair font-bold text-2xl leading-tight mb-2 sm:text-3xl">Career Opportunities</h2>
-                    <p className="text-sm text-muted-foreground sm:text-base">Discover jobs, internships, and freelance projects</p>
-                  </div>
-                  <Button variant="outline" asChild className="mt-4 w-full sm:w-auto sm:mt-0">
-                    <Link href="/opportunities">View All Opportunities</Link>
-                  </Button>
-                </div>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {[
-                    {
-                      title: "Senior Project Manager",
-                      company: "TechCorp Inc.",
-                      location: "Remote",
-                      type: "Full-time",
-                      salary: "$90k - $120k",
-                    },
-                    {
-                      title: "Scrum Master",
-                      company: "StartupXYZ",
-                      location: "San Francisco, CA",
-                      type: "Full-time",
-                      salary: "$85k - $110k",
-                    },
-                    {
-                      title: "PM Consultant",
-                      company: "Consulting Group",
-                      location: "Remote",
-                      type: "Contract",
-                      salary: "$75/hour",
-                    },
-                  ].map((job, index) => (
-                    <Card key={index} className="hover:shadow-md transition-shadow">
-                      <CardHeader>
-                        <CardTitle className="text-lg">{job.title}</CardTitle>
-                        <CardDescription>{job.company}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex flex-col items-start justify-start sm:flex-row sm:items-center sm:justify-between">
-                            <span className="text-muted-foreground">Location:</span>
-                            <span>{job.location}</span>
-                          </div>
-                          <div className="flex flex-col items-start justify-start sm:flex-row sm:items-center sm:justify-between">
-                            <span className="text-muted-foreground">Type:</span>
-                            <Badge variant="secondary">{job.type}</Badge>
-                          </div>
-                          <div className="flex flex-col items-start justify-start sm:flex-row sm:items-center sm:justify-between">
-                            <span className="text-muted-foreground">Salary:</span>
-                            <span className="font-medium text-primary">{job.salary}</span>
-                          </div>
-                          <Button className="w-full mt-4" size="sm">
-                            Apply Now
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </section>
 
             <footer className="bg-card py-8 px-4 mt-8 sm:py-12 sm:px-6 sm:mt-12 w-full">
               <div className="container mx-auto max-w-6xl flex flex-col items-center text-sm text-muted-foreground">
@@ -230,9 +143,7 @@ export default function HomePage() {
                 <p>&copy; {new Date().getFullYear()} Axious Technologies. All rights reserved.</p>
               </div>
             </footer>
-          </main>
-        </div>
-      </Sheet>
+      </main>
     </div>
   )
 }

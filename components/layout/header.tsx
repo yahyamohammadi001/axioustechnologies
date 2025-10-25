@@ -11,22 +11,21 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 interface HeaderProps {
-  setSidebarOpen?: (open: boolean) => void;
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
 }
 
-export function Header({ setSidebarOpen }: HeaderProps) {
+export function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-14 items-center px-4 md:px-6">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
+      <div className="flex h-16 items-center px-4 md:pl-6 md:pr-6">
         <div className="md:hidden">
-          {/* Sheet parent added to wrap SheetTrigger */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className={cn(buttonVariants({ variant: "ghost", size: "icon" }))} onClick={() => setSidebarOpen?.(true)}>
-                <Menu className="h-5 w-5" />
-              </button>
-            </SheetTrigger>
-          </Sheet>
+          <button 
+            className={cn(buttonVariants({ variant: "ghost", size: "icon" }))} 
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
+            <Menu className="h-5 w-5" />
+          </button>
         </div>
 
         <div className="flex flex-1 items-center justify-end space-x-4">

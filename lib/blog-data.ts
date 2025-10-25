@@ -50,7 +50,7 @@ export const blogsPosts = [
     category: "Remote Work",
     tags: ["Remote Work", "Team Management", "Tools", "Communication"],
     featured: false,
-    image: "/placeholder.jpg",
+    image: "/agile-scrum-course.jpg",
     views: 3156,
   },
   {

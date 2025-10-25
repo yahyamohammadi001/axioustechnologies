@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { DesktopSidebar, MobileSidebarContent } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
@@ -113,25 +111,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex flex-col flex-grow border-r bg-card">
-          <DesktopSidebar />
-        </div>
-      </div>
-
-      {/* Mobile Sidebar */}
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-        <div className="flex-1 flex flex-col md:pl-64">
-          {/* <Header setSidebarOpen={(open) => setIsSidebarOpen(open)} /> */}
-          <SheetContent side="left" className="p-0 w-64">
-            <SheetHeader>
-              <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-            </SheetHeader>
-            <MobileSidebarContent />
-          </SheetContent>
-          <main className="flex-1 overflow-y-auto p-6 md:p-8">
+    <div className="container mx-auto py-6">
+      <main className="flex-1 p-6 md:p-8">
             <section className="py-8 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg shadow-sm mb-8">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center space-x-4">
@@ -308,9 +289,7 @@ export default function DashboardPage() {
                 </CardContent>
               </Card>
             </section>
-          </main>
-        </div>
-      </Sheet>
+      </main>
     </div>
   )
 }

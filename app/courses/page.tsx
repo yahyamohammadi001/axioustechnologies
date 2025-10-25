@@ -1,8 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
-import { DesktopSidebar, MobileSidebarContent } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -129,30 +127,8 @@ export default function CoursesPage() {
   })
 
   return (
-    <div className="flex h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex flex-col flex-grow border-r bg-card">
-          <DesktopSidebar />
-        </div>
-      </div>
-
-      {/* Mobile Header (hidden on desktop) */}
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-        <div className="flex-1 flex flex-col md:pl-64">
-          <Header />
-
-          {/* Mobile Sidebar (visible only on mobile) */}
-          <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-            <SheetContent side="left" className="p-0 w-64">
-              <SheetHeader>
-                <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-              </SheetHeader>
-              <MobileSidebarContent />
-            </SheetContent>
-          </Sheet>
-
-          <main className="flex-1 overflow-y-auto">
+    <div className="container mx-auto py-6">
+      <main>
             {/* Header Section */}
             <section className="py-12 px-6 bg-card">
               <div className="max-w-6xl mx-auto">
@@ -312,9 +288,7 @@ export default function CoursesPage() {
                 )}
               </div>
             </section>
-          </main>
-        </div>
-      </Sheet>
+      </main>
     </div>
   )
 }

@@ -1,9 +1,8 @@
 "use client"
 
-import { useState, useCallback } from "react"
-import { DesktopSidebar, MobileSidebarContent } from "@/components/layout/sidebar";
+import { useState } from "react"
+import { DesktopSidebar, MobileSidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BookOpen } from "lucide-react";
 
@@ -19,17 +18,10 @@ export default function Loading() {
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
-      <Sheet open={isSidebarOpen} onOpenChange={(open) => setIsSidebarOpen(open)}>
-        <div className="flex-1 flex flex-col md:pl-64">
-          <Header />
-          <SheetContent side="left" className="p-0 w-64">
-            <SheetHeader>
-              <SheetTitle className="sr-only">Sidebar Navigation</SheetTitle>
-            </SheetHeader>
-            <MobileSidebarContent />
-          </SheetContent>
-          <main className="flex-1 overflow-y-auto">
+      <div className="flex-1 flex flex-col md:pl-64">
+        <Header sidebarOpen={isSidebarOpen} setSidebarOpen={setIsSidebarOpen} />
+        <MobileSidebar open={isSidebarOpen} setOpen={setIsSidebarOpen} />
+        <main className="flex-1 overflow-y-auto">
             {/* Header Section */}
             <section className="py-12 px-6 bg-card">
               <div className="max-w-6xl mx-auto">
@@ -76,8 +68,7 @@ export default function Loading() {
               </div>
             </section>
           </main>
-        </div>
-      </Sheet>
+      </div>
     </div>
   );
 }
