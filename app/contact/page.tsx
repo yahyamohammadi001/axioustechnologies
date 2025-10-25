@@ -21,6 +21,7 @@ export default function ContactPage() {
     category: "",
     message: "",
   })
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,11 +34,10 @@ export default function ContactPage() {
   }
 
   return (
-    
-      <div className="flex h-screen bg-background">
-  <DesktopSidebar />
-        <div className="flex-1 flex flex-col md:ml-64">
-          <Header />
+    <div className="flex h-screen bg-background">
+      <DesktopSidebar />
+      <div className="flex-1 flex flex-col md:pl-64">
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main className="flex-1 overflow-y-auto">
             {/* Header Section */}
             <section className="py-16 px-6 bg-gradient-to-br from-primary/5 to-primary/10">
