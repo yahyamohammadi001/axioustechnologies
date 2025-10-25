@@ -16,7 +16,7 @@ const faqCategories = [
     id: "getting-started",
     title: "Getting Started",
     icon: BookOpen,
-    description: "New to LearnPM? Start here",
+    description: "New to Axious Technologies? Start here",
     faqs: [
       {
         question: "How do I create an account?",

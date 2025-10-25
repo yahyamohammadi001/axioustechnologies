@@ -114,7 +114,7 @@ export function OnboardingFlow() {
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                   <BookOpen className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="font-playfair font-bold text-2xl">Welcome to LearnHub!</h3>
+                <h3 className="font-playfair font-bold text-2xl">Welcome to Axious Technologies!</h3>
                 <p className="text-xl text-muted-foreground text-pretty max-w-md mx-auto">
                   We'll help you personalize your learning experience in just a few quick steps.
                 </p>
